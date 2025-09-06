@@ -12,7 +12,6 @@ services:
       LOG_TYPE: "text"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger:4317"
       OTEL_EXPORTER_OTLP_INSECURE: "true"
-      OAUTH2_ALLOWED_GROUPS: "ipxe-manager-admins"
       IPXE_SCRIPT_DIR: "/etc/ipxe"
     env_file:
       - .env
