@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+      args:
+        BUILD_TAGS: "debug"
+    ports:
+      - "8080:8080"
+    environment:
+      LOG_LEVEL: debug
+      LOG_TYPE: "text"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger:4317"
+      OTEL_EXPORTER_OTLP_INSECURE: "true"
+      OAUTH2_ALLOWED_GROUPS: "ipxe-manager-admins"
+      IPXE_SCRIPT_DIR: "/etc/ipxe"
+    env_file:
+      - .env
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app/
+        - action: rebuild
+          path: go.mod
+        - action: rebuild
+          path: go.sum
+    volumes:
+      - ./example/scripts:/etc/ipxe:ro
+    networks:
+      - default
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.66.0
+    ports:
+      - "16686:16686" # Jaeger UI
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - default
+
+networks:
+  default: {}
