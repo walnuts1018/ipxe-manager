@@ -13,4 +13,3 @@ type Handler struct {
 func NewHandler(usecase *usecase.Usecase, random random.Random) *Handler {
 	return &Handler{usecase: usecase, random: random}
 }
-
