@@ -30,7 +30,7 @@ services:
       - default
 
   jaeger:
-    image: jaegertracing/all-in-one:1.73.0
+    image: jaegertracing/all-in-one:1.76.0
     ports:
       - "16686:16686" # Jaeger UI
     environment:
