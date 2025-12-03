@@ -10,7 +10,7 @@ tool (
 )
 
 require (
-	github.com/Code-Hex/synchro v0.5.3
+	github.com/Code-Hex/synchro v0.5.4
 	github.com/caarlos0/env/v11 v11.3.1
 	github.com/go-playground/validator/v10 v10.27.0
 	github.com/google/wire v0.7.0
